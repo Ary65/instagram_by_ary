@@ -51,7 +51,7 @@ class FirestoreMethods {
         });
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -75,10 +75,10 @@ class FirestoreMethods {
           'datePublished': DateTime.now(),
         });
       } else {
-        print('text is empty');
+        // print('text is empty');
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -87,7 +87,7 @@ class FirestoreMethods {
     try {
       await _firestore.collection('posts').doc(postId).delete();
     } catch (err) {
-      print(err.toString());
+      // print(err.toString());
     }
   }
 
@@ -120,7 +120,7 @@ class FirestoreMethods {
         });
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 }

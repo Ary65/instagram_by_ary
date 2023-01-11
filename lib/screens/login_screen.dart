@@ -111,7 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
                 : const Text(
                     'Log in',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
                   ),
           ),
 

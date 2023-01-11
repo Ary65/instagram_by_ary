@@ -8,9 +8,7 @@ import 'package:instagram_by_ary/responsive/mobile_screen_layout.dart';
 import 'package:instagram_by_ary/responsive/responsive_layout_screen.dart';
 import 'package:instagram_by_ary/responsive/web_screen_layout.dart';
 import 'package:instagram_by_ary/screens/login_screen.dart';
-import 'package:instagram_by_ary/screens/signup_screen.dart';
 import 'package:instagram_by_ary/utils/colors.dart';
-import 'package:instagram_by_ary/utils/global_variables.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -44,6 +42,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Instagram by Ary',
         theme: ThemeData.dark().copyWith(
+          useMaterial3: true,
           scaffoldBackgroundColor: mobileBackgroundColor,
         ),
         debugShowCheckedModeBanner: false,

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_by_ary/utils/colors.dart';
 import 'package:instagram_by_ary/utils/global_variables.dart';
+import 'package:instagram_by_ary/widgets/loader.dart';
 import 'package:instagram_by_ary/widgets/post_card.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -38,22 +40,25 @@ class FeedScreen extends StatelessWidget {
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Loader();
           }
-          return ListView.builder(
-            itemCount: snapshot.data?.docs.length ?? 0,
-            itemBuilder: (context, index) => Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: width > webScreenSize ? width * 0.3 : 0,
-                vertical: width > webScreenSize ? 15 : 0,
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (ctx, index) => Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: width > webScreenSize ? width * 0.3 : 0,
+                  vertical: width > webScreenSize ? 15 : 0,
+                ),
+                child: PostCard(
+                  snap: snapshot.data!.docs[index].data(),
+                ),
               ),
-              child: PostCard(
-                snap: snapshot.data?.docs[index].data() ?? 0,
-              ),
-            ),
-          );
+            );
+          } else if (snapshot.hasError) {
+            return Text('$snapshot.error');
+          }
+          return const CircularProgressIndicator();
         },
       ),
     );

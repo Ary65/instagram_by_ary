@@ -8,6 +8,7 @@ import 'package:instagram_by_ary/screens/login_screen.dart';
 import 'package:instagram_by_ary/utils/colors.dart';
 import 'package:instagram_by_ary/utils/utils.dart';
 import 'package:instagram_by_ary/widgets/follow_button.dart';
+import 'package:instagram_by_ary/widgets/loader.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -69,9 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
+        ? const Loader()
         : Scaffold(
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,

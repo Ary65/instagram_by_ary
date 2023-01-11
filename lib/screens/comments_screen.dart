@@ -5,6 +5,7 @@ import 'package:instagram_by_ary/providers/user_provider.dart';
 import 'package:instagram_by_ary/resources/firestore_methods.dart';
 import 'package:instagram_by_ary/utils/colors.dart';
 import 'package:instagram_by_ary/widgets/comment_card.dart';
+import 'package:instagram_by_ary/widgets/loader.dart';
 import 'package:provider/provider.dart';
 
 class CommentsScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UserProvider>(context).getUser;
+    final User user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
@@ -48,9 +49,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const Loader();
           }
           return ListView.builder(
             itemCount: (snapshot.data! as dynamic).docs.length,

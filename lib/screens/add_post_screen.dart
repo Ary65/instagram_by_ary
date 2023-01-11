@@ -134,9 +134,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
               actions: <Widget>[
                 TextButton(
                   onPressed: () => postImage(
-                    userProvider.getUser.uid,
-                    userProvider.getUser.username,
-                    userProvider.getUser.photoUrl,
+                    userProvider.user.uid,
+                    userProvider.user.username,
+                    userProvider.user.photoUrl,
                   ),
                   child: const Text(
                     "Post",
@@ -163,7 +163,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       backgroundImage: NetworkImage(
-                        userProvider.getUser.photoUrl,
+                        userProvider.user.photoUrl,
                       ),
                     ),
                     SizedBox(
